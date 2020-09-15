@@ -32,15 +32,15 @@ public class Generator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:postgresql://120.79.96.251:5432/hdsc_db?useUnicode=true");
-        dsc.setDriverName("org.postgresql.Driver");
-        dsc.setUsername("postgres");
-        dsc.setPassword("DevWR_hdsc");
-        dsc.setSchemaName("cha");
+        dsc.setUrl("jdbc:mysql://39.96.47.9:3306/bwc");
+        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setUsername("test");
+        dsc.setPassword("test");
+        dsc.setSchemaName("bwc");
         mpg.setDataSource(dsc);
 
         //数据表的列表
-        String[] tableName = {"config_vehicle_brand", "config_vehicle_models", "config_vehicle_series"};
+        String[] tableName = {"biz_worker_order_repair"};
 
         // 包配置
         PackageConfig pc = new PackageConfig();

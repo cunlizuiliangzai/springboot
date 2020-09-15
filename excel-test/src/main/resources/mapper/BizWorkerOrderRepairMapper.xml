@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liujia.mapper.BizWorkerOrderRepairMapper">
+
+    <insert id="insertBeatch" parameterType="java.util.List">
+        insert into
+        biz_worker_order_repair(worker_order_no,begin_datetime,operator,user_name,user_phone,province,city,area,street,address,
+        reserve_datetime,cid,order_state,sysc_status,create_time,last_update_time)
+        values
+        <foreach collection="list" item="it" separator=",">
+            (#{it.workerOrderNo},#{it.beginDatetime},#{it.operator},#{it.userName},#{it.userPhone},#{it.province},
+            #{it.city},#{it.area},#{it.street},#{it.address},#{it.reserveDatetime},#{it.cid},#{it.orderState},#{it.syscStatus},#{it.createTime},#{it.lastUpdateTime})
+        </foreach>
+    </insert>
+
+
+    <select id="getOrderById" parameterType="java.lang.String" resultType="com.liujia.entity.BizWorkerOrderRepair">
+        select * from biz_worker_order_repair where id = #{id}
+    </select>
+</mapper>

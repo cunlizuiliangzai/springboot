@@ -2,16 +2,24 @@ import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.common.collect.Lists;
 import com.liujia.ExcelTestApplication;
+import com.liujia.entity.BizWorkerOrderRepair;
 import com.liujia.entity.LoanInfo;
+import com.liujia.entity.ReparirInfo;
 import com.liujia.listenner.ExcelListener;
+import com.liujia.mapper.BizWorkerOrderRepairMapper;
+import com.liujia.service.IBizWorkerOrderRepairService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ex_111806190
@@ -21,19 +29,28 @@ import java.util.ArrayList;
 @SpringBootTest(classes = {ExcelTestApplication.class})
 public class excelTest {
 
+    @Autowired
+    BizWorkerOrderRepairMapper mapper;
+
+    @Test
+    public void test(){
+        String id = "123";
+      BizWorkerOrderRepair orderRepair =  mapper.getOrderById(id);
+    }
+
     //导入
     @Test
     public void testReadExcel() throws IOException {
         InputStream inputStream = new FileInputStream(new File("D:\\123.xlsx"));
-        ExcelListener excelListener = new ExcelListener();
-        EasyExcelFactory.readBySax(inputStream, new Sheet(1, 1, LoanInfo.class), excelListener);
+        ExcelListener excelListener = new ExcelListener(mapper);
+        EasyExcelFactory.readBySax(inputStream, new Sheet(1, 1, ReparirInfo.class), excelListener);
         inputStream.close();
     }
 
 
     //导出
     @Test
-    public void test1() throws FileNotFoundException {
+    public void export() throws FileNotFoundException {
         ArrayList<LoanInfo> loanInfos = new ArrayList<>();
         LoanInfo loanInfo = new LoanInfo();
         loanInfo.setId("123");
