@@ -24,7 +24,7 @@ public class Generator {
         // 这里修改为自己项目本地工程目录即可
 //        String projectPath = "D:\\document/CODE/SMARTCHARGE_CODE\\cdt-webmgmtcomponent\\cdt-webmgmtcomponent-service";
 
-        String projectPath = "D:\\project\\excel-test";
+        String projectPath = "D:\\project\\springboot\\excel-test";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("liujia");
         gc.setOpen(false);
@@ -40,11 +40,10 @@ public class Generator {
         mpg.setDataSource(dsc);
 
         //数据表的列表
-        String[] tableName = {"biz_worker_order_repair"};
+        String[] tableName = {"test_order"};
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        //pc.setModuleName(.cdt.linktogether-dao");
         pc.setParent("com.liujia");
         mpg.setPackageInfo(pc);
 

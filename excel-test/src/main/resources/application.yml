@@ -19,7 +19,7 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://39.96.47.9:3306/bwc
+    url: jdbc:mysql://39.96.47.9:3306/bwc?useSSL=false
     username: test
     password: test
     type: com.alibaba.druid.pool.DruidDataSource

@@ -57,28 +57,22 @@ public class ExcelListener extends AnalysisEventListener {
             BeanUtils.copyProperties(reparirInfo, bizWorkerOrderRepair);
             bizWorkerOrderRepair.setOrderState(5);
             bizWorkerOrderRepair.setSyscStatus(2);
-            if (reparirInfo.getBeginDatetime() != null && !reparirInfo.getBeginDatetime().equals("-") && !"".equals(reparirInfo.getBeginDatetime())) {
-                Date parse = null;
-                try {
-                    parse = sdf.parse(reparirInfo.getBeginDatetime());
-                } catch (ParseException parseException) {
-                    parseException.printStackTrace();
-                }
+            try {
+                Date parse = sdf.parse(reparirInfo.getBeginDatetime());
                 long time = parse.getTime() / 1000;
                 bizWorkerOrderRepair.setBeginDatetime((int) time);
+            } catch (ParseException parseException) {
             }
 
-            if (reparirInfo.getReserveDatetime() != null && !reparirInfo.getReserveDatetime().equals("-") && !"".equals(reparirInfo.getReserveDatetime())) {
-                Date parse = null;
-                try {
-                    parse = sdf.parse(reparirInfo.getReserveDatetime());
-                    long time = parse.getTime() / 1000;
-                    bizWorkerOrderRepair.setReserveDatetime((int) time);
-                } catch (ParseException parseException) {
-
-                }
+            try {
+                Date parse = sdf.parse(reparirInfo.getReserveDatetime());
+                long time = parse.getTime() / 1000;
+                bizWorkerOrderRepair.setReserveDatetime((int) time);
+            } catch (ParseException parseException) {
 
             }
+
+
             bizWorkerOrderRepair.setCid(1);
             Date date = new Date();
             long time = date.getTime() / 1000;
@@ -104,6 +98,8 @@ public class ExcelListener extends AnalysisEventListener {
         this.datas = datas;
     }
 
+
+    //把一个list切割成多个小的list
     public static <T> List<List<T>> averageAssign(List<T> source, int n) {
         List<List<T>> result = new ArrayList<List<T>>();
         int remainder = source.size() % n;  //(先计算出余数)

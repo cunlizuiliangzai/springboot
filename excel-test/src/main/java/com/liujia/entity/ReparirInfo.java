@@ -15,7 +15,7 @@ public class ReparirInfo extends BaseRowModel {
 
 
     @ExcelProperty(value = "workerOrderNo", index = 1)
-    private String orkerOrderNo;
+    private String workerOrderNo;
 
     @ExcelProperty(value = "beginDatetime", index = 2)
     private String beginDatetime;

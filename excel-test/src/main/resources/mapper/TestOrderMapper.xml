@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liujia.mapper.TestOrderMapper">
+
+    <resultMap id="orderListMap" type="com.liujia.entity.ShopOrder">
+        <result column="shop_name" property="shopName"/>
+        <result column="logo_adress" property="logoAdress"/>
+        <collection property="monthOrderlist" ofType="com.liujia.entity.MonthOrder" >
+            <result column="months" property="months"/>
+            <result column="num" property="num"/>
+            <result column="amount" property="amount"/>
+            <collection property="dayOrders" ofType="com.liujia.entity.DayOrder" select="getDayOrderlist"
+                        column="{businessId=business_id,months=months}">
+
+            </collection>
+        </collection>
+    </resultMap>
+
+
+    <select id="getShopOrderList" resultMap="orderListMap">
+		SELECT
+			T2.shop_name,
+			T1.business_id,
+			T2.logo_address,
+			date_format( T1.create_date, '%m' ) months,
+			count(*) num,sum(pay_money) amount
+		FROM
+			t_user_pay_order T1
+		LEFT JOIN t_business T2 ON T1.business_id = T2.id
+		where T1.business_id = #{businessId}
+		group by months
+	</select>
+
+
+    <resultMap id="dayOrderListMap" type="com.liujia.entity.DayOrder">
+        <result column="days" property="days"/>
+        <collection property="orders" ofType="com.liujia.entity.Order" >
+            <result column="pay_status" property="payStatus"/>
+            <result column="settle_account_type" property="settleAccountType"/>
+            <result column="pay_money" property="payMoney"/>
+            <result column="create_date" property="createDate"/>
+        </collection>
+    </resultMap>
+
+    <select id="getDayOrderlist" resultMap="dayOrderListMap">
+        SELECT
+		pay_status,settle_account_type,pay_money,create_date,date_format(create_date,'%Y-%m-%d') as days
+		FROM
+			t_user_pay_order
+		where business_id = #{businessId} and date_format( create_date, '%m' ) = #{months}
+	</select>
+
+
+
+</mapper>

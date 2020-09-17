@@ -4,10 +4,11 @@ import com.liujia.entity.LoanInfo;
 import com.liujia.util.EasyExcelUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 
 /**
@@ -24,6 +25,7 @@ public class ExportController {
         loanInfo.setId("123");
         loanInfo.setName("liujia");
         loanInfos.add(loanInfo);
-        EasyExcelUtil.export("loanInfo.xlsx",response,LoanInfo.class,loanInfos);
+        EasyExcelUtil.export("loanInfo.xlsx", response, LoanInfo.class, loanInfos);
     }
+
 }

@@ -2,14 +2,17 @@ import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.liujia.ExcelTestApplication;
 import com.liujia.entity.BizWorkerOrderRepair;
 import com.liujia.entity.LoanInfo;
 import com.liujia.entity.ReparirInfo;
+import com.liujia.entity.ShopOrder;
 import com.liujia.listenner.ExcelListener;
 import com.liujia.mapper.BizWorkerOrderRepairMapper;
+import com.liujia.mapper.TestOrderMapper;
 import com.liujia.service.IBizWorkerOrderRepairService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,11 +35,17 @@ public class excelTest {
     @Autowired
     BizWorkerOrderRepairMapper mapper;
 
+    @Autowired
+    TestOrderMapper orderMapper;
+
     @Test
-    public void test(){
-        String id = "123";
-      BizWorkerOrderRepair orderRepair =  mapper.getOrderById(id);
+    public void test() {
+
+        ShopOrder shopOrderList = orderMapper.getShopOrderList("20200801091754-5db339c38a_business");
+        String s = JSON.toJSONString(shopOrderList);
+        System.out.println(s);
     }
+
 
     //导入
     @Test
@@ -60,7 +69,7 @@ public class excelTest {
         try {
             ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX);
             //写第一个sheet, sheet1  数据全是List<String> 无模型映射关系
-            Sheet sheet1 = new Sheet(1, 0,LoanInfo.class);
+            Sheet sheet1 = new Sheet(1, 0, LoanInfo.class);
             writer.write(loanInfos, sheet1);
             writer.finish();
         } catch (Exception e) {
