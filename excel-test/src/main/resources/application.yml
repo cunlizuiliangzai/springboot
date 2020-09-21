@@ -7,6 +7,15 @@ mybatis:
     - "classpath:mapper/**/*.xml"                     # mapper映射文件
   type-aliases-package: com.liujia.entity            # 别名类所在包
 
+
+logging:
+  level:
+    root: info
+    com:
+      liujia:
+        mapper: debug
+
+
 #spring:
 #  datasource:
 #    type: com.alibaba.druid.pool.DruidDataSource
@@ -25,3 +34,38 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 
 
+name: zhangsan \n lisi       #字符串，和''一样
+name1: "zhangsan \n lisi"    #双引号不会转义，\n 为换行
+name2: 'zhangsan \n lisi'    #单引号会转义，  \n 输出\n
+
+#friends:
+#  lastname: zhangsan     换行写法
+#  age: 18
+
+#friends: {lastname: zhangsan,age: 18}
+
+#dayofweek:
+#  week:
+#  - monday
+#  - tuesday
+#  - wednesday
+#  - thursday
+#  - friday
+#  - saturday
+#  - sunday
+
+dayofweek:
+  week: [monday,tuesday,wednesday,thursday,friday,saturday,sunday]
+
+#person:
+#  lastName: 王八蛋
+#  age: 18
+#  boss: false
+#  birth: 2017/12/12
+#  maps: {k1: v1,k2: 12}
+#  lists:
+#    - lisi
+#    - zhaoliu
+#  dog:
+#    name: 小狗
+#    age: 12

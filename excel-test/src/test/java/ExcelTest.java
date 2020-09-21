@@ -22,7 +22,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author ex_111806190
@@ -30,21 +29,10 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ExcelTestApplication.class})
-public class excelTest {
+public class ExcelTest {
 
     @Autowired
     BizWorkerOrderRepairMapper mapper;
-
-    @Autowired
-    TestOrderMapper orderMapper;
-
-    @Test
-    public void test() {
-
-        ShopOrder shopOrderList = orderMapper.getShopOrderList("20200801091754-5db339c38a_business");
-        String s = JSON.toJSONString(shopOrderList);
-        System.out.println(s);
-    }
 
 
     //导入
