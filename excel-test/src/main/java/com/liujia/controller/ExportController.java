@@ -2,6 +2,8 @@ package com.liujia.controller;
 
 import com.liujia.entity.LoanInfo;
 import com.liujia.util.EasyExcelUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -17,6 +19,8 @@ import java.util.*;
  */
 @Controller
 public class ExportController {
+
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/export")
     public void cooperation(HttpServletRequest request, HttpServletResponse response) throws IOException {
