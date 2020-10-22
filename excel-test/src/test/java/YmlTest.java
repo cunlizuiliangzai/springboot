@@ -1,11 +1,8 @@
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.liujia.ExcelTestApplication;
 import com.liujia.config.ConfigBean;
 import com.liujia.config.DayofWeek;
-import com.liujia.config.Person;
+import com.liujia.entity.Person;
 import com.liujia.util.ResourceUtil;
-import org.apache.ibatis.type.Alias;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeansException;
@@ -16,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.test.context.junit4.SpringRunner;
-import java.util.Objects;
 
 /**
  * @author ex_111806190

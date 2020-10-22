@@ -1,4 +1,4 @@
-package com.liujia.config;
+package com.liujia.entity;
 
 import com.liujia.entity.Dog;
 
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ import java.util.Map;
 @Component
 @Data
 //@Validated
-public class Person {
+public class Person implements Serializable {
 
 //    @Email
     private String lastName;

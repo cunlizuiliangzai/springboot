@@ -1,0 +1,188 @@
+1 面向对象的特征主要有以下几个方面：封装，继承，多态性，抽象
+
+2 修饰符  public 公开的 default 同一包下公开 protected 同一包子类公开 private 同一类下公开
+
+3 8大基本数据类型 byte 1字节 short 2字节 int 4字节 long 8字节  char 2字节 float 4字节  double 8字节   boolean false/true(理论上占用1bit,1/8字节，实际处理按1byte处理)
+
+4 整型默认int   浮点型默认double
+  float f=3.4;是否正确
+  不正确。3.4 是双精度数，将双精度型（double）赋值给浮点型（float）属于
+  下转型（down-casting，也称为窄化）会造成精度损失，因此需要强制类型转换
+  float f =(float)3.4; 或者写成float f =3.4F;
+
+  short s1 = 1; s1 = s1 + 1;有错吗?short s1 = 1; s1 += 1;有错吗？
+  对于short s1 = 1; s1 = s1 + 1;由于1 是int 类型，因此s1+1 运算结果
+  也是int 型，需要强制转换类型才能赋值给short 型。而short s1 = 1; s1 +=
+  1;可以正确编译，因为s1+= 1;相当于s1 = (short(s1 + 1);其中有隐含的强
+  制类型转换
+
+5 goto 是Java 中的保留字
+
+6 原始类型: boolean，char，byte，short，int，long，float，double
+  包装类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double
+
+  Integer a = new Integer(3);
+  Integer b = 3;
+  // 将3 自动装箱成Integer 类型
+  int c = 3;
+  System.out.println(a == b);
+  // false 两个引用没有引用同一对象
+  System.out.println(a == c);
+  // true a 自动拆箱成int 类型再和c比较
+
+//整型字面量的值在-128 到127 直接引用常量池中的Integer对象
+  Integer f1 = 100, f2 = 100, f3 = 150, f4 = 150;
+  System.out.println(f1 == f2); //true
+  System.out.println(f3 == f4); //false
+
+7 &和&&的区别  左右两端的布尔值都是true 整个表达式的值才是true,&&左边的表达式的值是false，右边的表达式会被直接短路掉，不会进行运算
+
+8 String str = new String("hello");
+  str 放在栈上，用 new 创建出来的字符串对象放在堆上，而”hello”这个字面量是放在方法区的。
+  由于JIT 编译器的发展和”逃逸分析”技术的逐渐成熟，栈上分配、标量替换等优化技术使得对象一定分配在堆上这件事情已经变得不那么绝对了
+
+9 Math.round(11.5) 等于多少？  //12  参数上加0.5 然后进行下取整
+  Math.round(-11.5)等于多少？  //-11 参数上加0.5 然后进行下取整
+
+10 在Java 5 以前，switch(expr)中，expr 只能是byte、short、char、int。从
+   Java5 开始，Java 中引入了枚举类型，expr 也可以是enum 类型，从Java 7 开
+   始，expr 还可以是字符串（String），但是长整型（long）在目前所有的版本
+   中都是不可以的。
+
+11 用最有效率的方法计算2 乘以8？
+    2 << 3（左移3 位相当于乘以2 的3 次方，右移3 位相当于除以2 的3 次 方）。
+    31 * i == (i << 5） - i
+
+12 如何跳出当前的多重嵌套循环？   在最外层循环前加一个标记如A，然后用break A;可以跳出多重循环。支持带标签的break 和continue 语句
+      A:  for (int j = 0; j < 10; j++) {
+                    break A;
+                }
+
+13 构造器（constructor）是否可被重写（override）？
+   构造器不能被继承，因此不能被重写，但可以被重载
+
+14 两个对象值相同(x.equals(y) == true)，但却可有不同的hash code，这句话对不对？
+   如果两个对象相同（equals 方法返回true），那么它们的hashCode 值一定要相同；
+   如果两个对象的hashCode 相同，它们并不一定相同
+
+15 Java 语言的方法调用只支持参数的值传递。当一个对象实例作为一
+   个参数被传递到方法中时，参数的值就是对该对象的引用。
+
+16 string 被final修饰不可变字符序列
+   stringbuilder  可变字符序列，效率高，不安全
+   stringbuffer   可变字符序列，效率低，安全,被synchronized修饰
+   当字符串相加操作或者改动较少的情况下，建议使用 +号拼接；
+   当字符串相加操作较多的情况下，建议使用StringBuilder，如果采用了多线程，则使用StringBuffer
+
+   字符串的+操作其本质是创建了StringBuilder 对象进行append 操作，然
+   后将拼接后的StringBuilder 对象用toString 方法处理成String 对象
+           String s1 = "Programming";
+           String s2 = new String("Programming");
+           String s3 = "Program";
+           String s4 = "ming";
+           String s5 = "Program" + "ming";
+           String s6 = s3 + s4;
+           System.out.println(s1 == s2); //false
+           System.out.println(s1 == s5); //true
+           System.out.println(s1 == s6); //false
+           System.out.println(s1 == s6.intern()); //true
+           System.out.println(s2 == s2.intern()); //false
+
+17 方法的重载和重写都是实现多态的方式，区别在于前者实现的是编译时的多态
+   性，而后者实现的是运行时的多态性。重载发生在一个类中，同名的方法如果有
+   不同的参数列表（参数类型不同、参数个数不同或者二者都不同）则视为重载；
+   重写发生在子类与父类之间，重写要求子类被重写方法与父类被重写方法有相同
+   的返回类型，比父类被重写方法更好访问，不能比父类被重写方法声明更多的异
+   常（里氏代换原则）。重载对返回类型没有特殊的要求。
+
+18 JVM 加载class 文件的原理机制？
+   加载、连接（验证、准备和解析）和初始化
+   类的加载是指类的.class文件钟的数据读入到内存钟，通常是创建一个字节数组读入.class文件，然后产生与所
+   加载类对应的Class对象。加载完成后进入链接阶段，这一阶段包括验证（java文件），准备（为静态变量分配内存设置初始值)和
+   解析（将符号引用替换成直接引用）三个步骤，最后进行初始化，如果这个类存在直接父类并且父类未被初始化，那就先初始化父类，
+   如果类中存在初始化语句，就以此执行初始话语句
+
+   bootstrap 根加载器 extension 扩展类加载器  system 系统类加载器  用户自定义加载器
+   类的加载首先请求父类加载器加载，父类加载器无能为力时才由其子类加载器自行加载
+
+19 抽象方法需要被子类重写   不能被static  native  synchronized 修饰
+
+20 静态变量和实例变量的区别？
+   静态变量是被static修饰的属性，又称之为类变量，它属于类，随着类的加载而加载，有且仅有一份拷贝。静态变量可以实现让多个对象共享内存
+   实例变量必须依赖于某一实例，需要先创建对象然后才能通过对象去访问
+
+21 是否可以从一个静态（static）方法内部发出对非静态（non_static）方法调用？
+   不可以，静态方法只能访问静态成员，因为非静态方法的调用要先创建对象，在调用静态方法时可能对象并没有被初始化。
+
+22 如何实现对象克隆？
+   实现Cloneable 接口并重写Object类中的Clone()方法;
+   实现Serializeble 接口,通过对象的序列化和发序列化实现克隆,可以实现真正的深度克隆
+
+23 Java final关键字的用法？
+   修饰类不能被继承
+   修饰方法不能被重写
+   修饰属性为常量
+
+24 类的执行顺序  父类的静态属性，静态代码块（上下顺序）  -> 子类的静态属性，静态代码块（上下顺序） -> 父类的普通属性，普通代码块（上下顺序）-> 父类的构造器
+   -> 子类的普通属性，普通代码块（上下顺序）-> 子类构造器
+   运行main方法会先加载main所在类
+
+25 怎样将GB2312 编码的字符串转换为 ISO-8859-1 编码的字符串？
+    String s2 = new String("你好".getBytes("GB2312"), "ISO-8859-1");
+
+26 Error 和Exception 有什么区别？
+   Error 表示系统级的错误和程序不必处理的异常，是恢复不是不可能但很困难的情况下的一种严重问题；比如内存溢出，不可能指望程序能处理这样的情况；
+   Exception 表示需要捕捉或者需要程序进行处理的异常，是一种设计或实现问题；也就是说，它表示如果程序运行正常，从不会发生的情况。
+
+27 try{}里有一个return 语句，那么紧跟在这个 try 后的finally{}里的代码会不会被执行，什么时候被执行，在return 前还是后?
+   会执行，在方法返回调用者前执行。  finally 中改变返回值会改变return的值（不好的做法）
+
+28 列出一些你常见的运行时异常？
+    - ArithmeticException（算术异常）
+    - ClassCastException （类转换异常）
+    - IllegalArgumentException （非法参数异常）
+    - IndexOutOfBoundsException （下标越界异常）
+    - NullPointerException （空指针异常）
+    - SecurityException （安全异常）
+    - OutOfMemoryError 堆内存溢出（大对象创建）
+    - stackoverflowerror 栈内存不足（递归）
+
+29 阐述final、finally、finalize 的区别？
+   finalize   垃圾收集器在销毁对象时调用，通过重写finalize（）方法可以整理系统资源或者执行其他清理工作
+   final   修饰类不能被继承  修饰方法不能被重写  修饰属性为常量
+   finally  try{}catch()finally{}   finally中的代码块一定会执行，可以用于释放支援
+
+30 ArrayList 和 LinkedListed 都是非线程安全的，如果遇到多个线程操作同一个容器的场景，通过工具类Collections 中的synchronizedList 方法将其转换成线程
+   安全的容器后再使用（这是对装潢模式的应用，将已有对象传入另一个类的构造器中创建新的对象来增强实现）
+
+31 collection 和 collections 的区别？
+   collection 是一个接口，它是set，list等容器的父接口； collections是个工具类，提供了一系列的静态方法来辅助容器操作，比如搜索，排序，线程安全化等。
+
+32 synchronized 和 java.util.concurrent.locks.Lock 的异同？
+   Lock 要显示的加锁解锁   Lock可以实现公平锁   Lock有newCondition()指定唤醒某线程 线程通信更好
+   Lock还有信号器（共享资源线程指定访问数量），计数器（达到指定CountDownLatch数量后线程同时运行）
+
+33  事务的acid
+   a  原子性  事务要么一起成功要么一起失败
+   b  一致性  事务的约束性一致，事物成功失败a+b=100；
+   c  隔离性  事务之间相互隔离，不能看到事务中间状态的数据
+   d  持久性  事务持久化到数据库
+
+   脏读 一个事务读取到另一个事务未提交的数据
+   不可重复读   一个事务多次查询返回不同结果，是因为另一个事务对结果进行了修改提交。   锁行
+   幻读   一个事务查询一批符合要求的数据，再次查询，发现有所不同，另一个数据对他进行了修改。   锁表
+
+   读未提交（read uncommitted）  脏读，不可重复读，幻读都会出现
+   读已提交（read commited）   可避免脏读。
+   可重复读（repeatable read ）  可避免脏读，不可重复读。mysql默认隔离级别
+   序列化 (searilizble)  可避免脏读，不可重复读，幻读
+
+
+34 获得一个类的类对象有哪些方式?
+    类名.class   对象.getclass    Class.forName("全类名")
+
+35  工厂模式: 工厂类可以根据条件生成不同的子类，这些子类有公共的抽象父类并实现了相同的方法，但是这些方法根据不同的类做了不同的
+操作（多态方法）。工厂方法获取对象，直接调用方法不需要考虑他是哪个子类。
+    代理模式： 给对象提供一个代理对象，通过代理对象去控制原对象的引用。
+    适配模式： 把一个类的接口变成客户端希望的另一种接口，进行匹配兼容。
+    装潢模式： 把一个类变成另一个功能更强大的类（collections.syscrinezidList（arraylis））

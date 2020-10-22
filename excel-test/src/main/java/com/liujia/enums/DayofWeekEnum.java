@@ -1,4 +1,4 @@
-package com.liujia.base;
+package com.liujia.enums;
 
 /**
  * @author ex_111806190
@@ -7,3 +7,4 @@ package com.liujia.base;
 public enum DayofWeekEnum {
     MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,STAURDAY,SUNDAY;
 }
+
