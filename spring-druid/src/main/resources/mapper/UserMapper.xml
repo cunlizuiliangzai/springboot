@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liujia.springdruid.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.liujia.springdruid.domain.User">
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="full_name" jdbcType="VARCHAR" property="full_name"/>
+        <result column="user_name" jdbcType="VARCHAR" property="user_name"/>
+        <result column="pass_word" jdbcType="VARCHAR" property="pass_word"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="shop_name" jdbcType="VARCHAR" property="shop_name"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="create_date"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="update_date"/>
+        <result column="openid" jdbcType="VARCHAR" property="openid"/>
+        <result column="unionid" jdbcType="VARCHAR" property="unionid"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nick_name"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phone_number"/>
+        <result column="pure_phone_number" jdbcType="VARCHAR" property="pure_phone_number"/>
+        <result column="country_code" jdbcType="VARCHAR" property="country_code"/>
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatar_url"/>
+        <result column="today_order" jdbcType="INTEGER" property="today_order"/>
+        <result column="rebate_order" jdbcType="INTEGER" property="rebate_order"/>
+        <result column="rebate_money" jdbcType="BIGINT" property="rebate_money"/>
+        <result column="integral" jdbcType="INTEGER" property="integral"/>
+        <result column="recommender_id" jdbcType="VARCHAR" property="recommender_id"/>
+        <result column="recommender_phone_number" jdbcType="VARCHAR" property="recommender_phone_number"/>
+        <result column="invitation_number" jdbcType="INTEGER" property="invitation_number"/>
+        <result column="acquired_number" jdbcType="INTEGER" property="acquired_number"/>
+        <result column="whether_valid" jdbcType="VARCHAR" property="whether_valid"/>
+        <result column="visit_date" jdbcType="TIMESTAMP" property="visit_date"/>
+        <result column="birth_date" jdbcType="TIMESTAMP" property="birth_date"/>
+        <result column="equipment" jdbcType="VARCHAR" property="equipment"/>
+        <result column="user_type" jdbcType="VARCHAR" property="user_type"/>
+        <result column="medal" jdbcType="VARCHAR" property="medal"/>
+        <result column="forbid_say_date" jdbcType="TIMESTAMP" property="forbid_say_date"/>
+        <result column="forbid_publish_date" jdbcType="TIMESTAMP" property="forbid_publish_date"/>
+        <result column="forbid_buy_overbearfood_date" jdbcType="TIMESTAMP" property="forbid_buy_overbearfood_date"/>
+        <result column="relation_id" jdbcType="VARCHAR" property="relation_id"/>
+        <result column="double_card" jdbcType="INTEGER" property="double_card"/>
+        <result column="eleme_relation_id" jdbcType="VARCHAR" property="eleme_relation_id"/>
+        <result column="vip_end_date" jdbcType="TIMESTAMP" property="vip_end_date"/>
+        <result column="buy_vip_num" jdbcType="INTEGER" property="buy_vip_num"/>
+        <result column="first_buy_vip_date" jdbcType="TIMESTAMP" property="first_buy_vip_date"/>
+        <result column="vip_card_id" jdbcType="VARCHAR" property="vip_card_id"/>
+        <result column="message_status" jdbcType="TINYINT" property="message_status"/>
+        <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="mei_openid" jdbcType="VARCHAR" property="mei_openid"/>
+        <result column="city_name" jdbcType="VARCHAR" property="city_name"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.liujia.springdruid.domain.UserWithBLOBs">
+        <result column="wx_miniprogram_path" jdbcType="LONGVARCHAR" property="wx_miniprogram_path"/>
+        <result column="channel_url" jdbcType="LONGVARCHAR" property="channel_url"/>
+        <result column="wx_qrcode_url" jdbcType="LONGVARCHAR" property="wx_qrcode_url"/>
+        <result column="click_url" jdbcType="LONGVARCHAR" property="click_url"/>
+        <result column="short_click_url" jdbcType="LONGVARCHAR" property="short_click_url"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
+    wx_miniprogram_path, channel_url, wx_qrcode_url, click_url, short_click_url
+  </sql>
+
+
+    <select id="getUserById" resultMap="BaseResultMap">
+    select * from t_user where id = #{userId}
+  </select>
+
+
+    <select id="getUserByPage" parameterType="com.liujia.springdruid.query.UserQuery" resultMap="BaseResultMap">
+        select * from t_user
+  </select>
+</mapper>
