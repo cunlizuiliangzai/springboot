@@ -347,4 +347,177 @@
     wx_miniprogram_path, channel_url, wx_qrcode_url, click_url, short_click_url
     from t_user
   </select>
+  <resultMap id="BaseResultMap" type="com.sws.code.mycode.entity.User">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="unionid" jdbcType="VARCHAR" property="unionid" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="pure_phone_number" jdbcType="VARCHAR" property="purePhoneNumber" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="today_order" jdbcType="INTEGER" property="todayOrder" />
+    <result column="rebate_order" jdbcType="INTEGER" property="rebateOrder" />
+    <result column="rebate_money" jdbcType="BIGINT" property="rebateMoney" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="recommender_id" jdbcType="VARCHAR" property="recommenderId" />
+    <result column="recommender_phone_number" jdbcType="VARCHAR" property="recommenderPhoneNumber" />
+    <result column="invitation_number" jdbcType="INTEGER" property="invitationNumber" />
+    <result column="acquired_number" jdbcType="INTEGER" property="acquiredNumber" />
+    <result column="whether_valid" jdbcType="VARCHAR" property="whetherValid" />
+    <result column="visit_date" jdbcType="TIMESTAMP" property="visitDate" />
+    <result column="birth_date" jdbcType="TIMESTAMP" property="birthDate" />
+    <result column="equipment" jdbcType="VARCHAR" property="equipment" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="medal" jdbcType="VARCHAR" property="medal" />
+    <result column="forbid_say_date" jdbcType="TIMESTAMP" property="forbidSayDate" />
+    <result column="forbid_publish_date" jdbcType="TIMESTAMP" property="forbidPublishDate" />
+    <result column="forbid_buy_overbearfood_date" jdbcType="TIMESTAMP" property="forbidBuyOverbearfoodDate" />
+    <result column="relation_id" jdbcType="VARCHAR" property="relationId" />
+    <result column="double_card" jdbcType="INTEGER" property="doubleCard" />
+    <result column="eleme_relation_id" jdbcType="VARCHAR" property="elemeRelationId" />
+    <result column="vip_end_date" jdbcType="TIMESTAMP" property="vipEndDate" />
+    <result column="buy_vip_num" jdbcType="INTEGER" property="buyVipNum" />
+    <result column="first_buy_vip_date" jdbcType="TIMESTAMP" property="firstBuyVipDate" />
+    <result column="vip_card_id" jdbcType="VARCHAR" property="vipCardId" />
+    <result column="message_status" jdbcType="TINYINT" property="messageStatus" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="mei_openid" jdbcType="VARCHAR" property="meiOpenid" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="wx_miniprogram_path" jdbcType="LONGVARCHAR" property="wxMiniprogramPath" />
+    <result column="channel_url" jdbcType="LONGVARCHAR" property="channelUrl" />
+    <result column="wx_qrcode_url" jdbcType="LONGVARCHAR" property="wxQrcodeUrl" />
+    <result column="click_url" jdbcType="LONGVARCHAR" property="clickUrl" />
+    <result column="short_click_url" jdbcType="LONGVARCHAR" property="shortClickUrl" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sws.code.mycode.entity.User">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user (full_name, user_name, pass_word, 
+      `level`, shop_name, create_date, 
+      update_date, openid, unionid, 
+      nick_name, phone_number, pure_phone_number, 
+      country_code, avatar_url, today_order, 
+      rebate_order, rebate_money, integral, 
+      recommender_id, recommender_phone_number, 
+      invitation_number, acquired_number, whether_valid, 
+      visit_date, birth_date, equipment, 
+      user_type, medal, forbid_say_date, 
+      forbid_publish_date, forbid_buy_overbearfood_date, 
+      relation_id, double_card, eleme_relation_id, 
+      vip_end_date, buy_vip_num, first_buy_vip_date, 
+      vip_card_id, message_status, longitude, 
+      latitude, mei_openid, city_name, 
+      address, wx_miniprogram_path, channel_url, 
+      wx_qrcode_url, click_url, short_click_url
+      )
+    values (#{fullName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{openid,jdbcType=VARCHAR}, #{unionid,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{purePhoneNumber,jdbcType=VARCHAR}, 
+      #{countryCode,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, #{todayOrder,jdbcType=INTEGER}, 
+      #{rebateOrder,jdbcType=INTEGER}, #{rebateMoney,jdbcType=BIGINT}, #{integral,jdbcType=INTEGER}, 
+      #{recommenderId,jdbcType=VARCHAR}, #{recommenderPhoneNumber,jdbcType=VARCHAR}, 
+      #{invitationNumber,jdbcType=INTEGER}, #{acquiredNumber,jdbcType=INTEGER}, #{whetherValid,jdbcType=VARCHAR}, 
+      #{visitDate,jdbcType=TIMESTAMP}, #{birthDate,jdbcType=TIMESTAMP}, #{equipment,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{medal,jdbcType=VARCHAR}, #{forbidSayDate,jdbcType=TIMESTAMP}, 
+      #{forbidPublishDate,jdbcType=TIMESTAMP}, #{forbidBuyOverbearfoodDate,jdbcType=TIMESTAMP}, 
+      #{relationId,jdbcType=VARCHAR}, #{doubleCard,jdbcType=INTEGER}, #{elemeRelationId,jdbcType=VARCHAR}, 
+      #{vipEndDate,jdbcType=TIMESTAMP}, #{buyVipNum,jdbcType=INTEGER}, #{firstBuyVipDate,jdbcType=TIMESTAMP}, 
+      #{vipCardId,jdbcType=VARCHAR}, #{messageStatus,jdbcType=TINYINT}, #{longitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{meiOpenid,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{wxMiniprogramPath,jdbcType=LONGVARCHAR}, #{channelUrl,jdbcType=LONGVARCHAR}, 
+      #{wxQrcodeUrl,jdbcType=LONGVARCHAR}, #{clickUrl,jdbcType=LONGVARCHAR}, #{shortClickUrl,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.sws.code.mycode.entity.User">
+    update t_user
+    set full_name = #{fullName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      pass_word = #{passWord,jdbcType=VARCHAR},
+      `level` = #{level,jdbcType=INTEGER},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      openid = #{openid,jdbcType=VARCHAR},
+      unionid = #{unionid,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      pure_phone_number = #{purePhoneNumber,jdbcType=VARCHAR},
+      country_code = #{countryCode,jdbcType=VARCHAR},
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      today_order = #{todayOrder,jdbcType=INTEGER},
+      rebate_order = #{rebateOrder,jdbcType=INTEGER},
+      rebate_money = #{rebateMoney,jdbcType=BIGINT},
+      integral = #{integral,jdbcType=INTEGER},
+      recommender_id = #{recommenderId,jdbcType=VARCHAR},
+      recommender_phone_number = #{recommenderPhoneNumber,jdbcType=VARCHAR},
+      invitation_number = #{invitationNumber,jdbcType=INTEGER},
+      acquired_number = #{acquiredNumber,jdbcType=INTEGER},
+      whether_valid = #{whetherValid,jdbcType=VARCHAR},
+      visit_date = #{visitDate,jdbcType=TIMESTAMP},
+      birth_date = #{birthDate,jdbcType=TIMESTAMP},
+      equipment = #{equipment,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      medal = #{medal,jdbcType=VARCHAR},
+      forbid_say_date = #{forbidSayDate,jdbcType=TIMESTAMP},
+      forbid_publish_date = #{forbidPublishDate,jdbcType=TIMESTAMP},
+      forbid_buy_overbearfood_date = #{forbidBuyOverbearfoodDate,jdbcType=TIMESTAMP},
+      relation_id = #{relationId,jdbcType=VARCHAR},
+      double_card = #{doubleCard,jdbcType=INTEGER},
+      eleme_relation_id = #{elemeRelationId,jdbcType=VARCHAR},
+      vip_end_date = #{vipEndDate,jdbcType=TIMESTAMP},
+      buy_vip_num = #{buyVipNum,jdbcType=INTEGER},
+      first_buy_vip_date = #{firstBuyVipDate,jdbcType=TIMESTAMP},
+      vip_card_id = #{vipCardId,jdbcType=VARCHAR},
+      message_status = #{messageStatus,jdbcType=TINYINT},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      mei_openid = #{meiOpenid,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      wx_miniprogram_path = #{wxMiniprogramPath,jdbcType=LONGVARCHAR},
+      channel_url = #{channelUrl,jdbcType=LONGVARCHAR},
+      wx_qrcode_url = #{wxQrcodeUrl,jdbcType=LONGVARCHAR},
+      click_url = #{clickUrl,jdbcType=LONGVARCHAR},
+      short_click_url = #{shortClickUrl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, full_name, user_name, pass_word, `level`, shop_name, create_date, update_date, 
+    openid, unionid, nick_name, phone_number, pure_phone_number, country_code, avatar_url, 
+    today_order, rebate_order, rebate_money, integral, recommender_id, recommender_phone_number, 
+    invitation_number, acquired_number, whether_valid, visit_date, birth_date, equipment, 
+    user_type, medal, forbid_say_date, forbid_publish_date, forbid_buy_overbearfood_date, 
+    relation_id, double_card, eleme_relation_id, vip_end_date, buy_vip_num, first_buy_vip_date, 
+    vip_card_id, message_status, longitude, latitude, mei_openid, city_name, address, 
+    wx_miniprogram_path, channel_url, wx_qrcode_url, click_url, short_click_url
+    from t_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, full_name, user_name, pass_word, `level`, shop_name, create_date, update_date, 
+    openid, unionid, nick_name, phone_number, pure_phone_number, country_code, avatar_url, 
+    today_order, rebate_order, rebate_money, integral, recommender_id, recommender_phone_number, 
+    invitation_number, acquired_number, whether_valid, visit_date, birth_date, equipment, 
+    user_type, medal, forbid_say_date, forbid_publish_date, forbid_buy_overbearfood_date, 
+    relation_id, double_card, eleme_relation_id, vip_end_date, buy_vip_num, first_buy_vip_date, 
+    vip_card_id, message_status, longitude, latitude, mei_openid, city_name, address, 
+    wx_miniprogram_path, channel_url, wx_qrcode_url, click_url, short_click_url
+    from t_user
+  </select>
 </mapper>
