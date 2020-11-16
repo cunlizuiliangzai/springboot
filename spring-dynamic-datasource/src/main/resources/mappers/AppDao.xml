@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liujia.springdynamicdatasource.dao.AppDao">
+  <resultMap id="BaseResultMap" type="com.liujia.springdynamicdatasource.entity.App">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="AppId" jdbcType="VARCHAR" property="appid" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="OrgId" jdbcType="VARCHAR" property="orgid" />
+    <result column="OrgName" jdbcType="VARCHAR" property="orgname" />
+    <result column="OwnerName" jdbcType="VARCHAR" property="ownername" />
+    <result column="OwnerEmail" jdbcType="VARCHAR" property="owneremail" />
+    <result column="IsDeleted" jdbcType="BIT" property="isdeleted" />
+    <result column="DataChange_CreatedBy" jdbcType="VARCHAR" property="datachangeCreatedby" />
+    <result column="DataChange_CreatedTime" jdbcType="TIMESTAMP" property="datachangeCreatedtime" />
+    <result column="DataChange_LastModifiedBy" jdbcType="VARCHAR" property="datachangeLastmodifiedby" />
+    <result column="DataChange_LastTime" jdbcType="TIMESTAMP" property="datachangeLasttime" />
+  </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select Id, AppId, `Name`, OrgId, OrgName, OwnerName, OwnerEmail, IsDeleted, DataChange_CreatedBy, 
+    DataChange_CreatedTime, DataChange_LastModifiedBy, DataChange_LastTime
+    from app
+  </select>
+</mapper>
