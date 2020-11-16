@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liujia.springdynamiccreatetable.mapper.UserLogMapper">
+    <resultMap id="BaseResultMap" type="com.liujia.springdynamiccreatetable.domain.UserLog">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="user_name"/>
+        <result column="operation" jdbcType="VARCHAR" property="operation"/>
+        <result column="method" jdbcType="VARCHAR" property="method"/>
+        <result column="params" jdbcType="VARCHAR" property="params"/>
+        <result column="time" jdbcType="BIGINT" property="time"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, user_name, operation, method, params, time, ip
+  </sql>
+
+    <insert id="save">
+   insert into ${tableName} (id, user_name, operation,
+      method, params, time,
+      ip)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR},
+      #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT},
+      #{ip,jdbcType=VARCHAR})
+  </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from ${tableName}
+    </select>
+
+
+    <select id="existTable" parameterType="String" resultType="Integer">
+    select count(*)
+    from apolloconfigdb.TABLES
+    where table_name=#{tableName}
+  </select>
+
+    <update id="dropTable">
+    DROP TABLE IF EXISTS ${tableName}
+  </update>
+
+    <update id="createTable" parameterType="String">
+    CREATE TABLE ${tableName} (
+      `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
+      `user_name` varchar(50) DEFAULT NULL COMMENT '用户名',
+      `operation` varchar(50) DEFAULT NULL COMMENT '用户操作',
+      `method` varchar(200) DEFAULT NULL COMMENT '请求方法',
+      `params` varchar(5000) DEFAULT NULL COMMENT '请求参数',
+      `time` bigint(20) NOT NULL COMMENT '执行时长(毫秒)',
+      `ip` varchar(64) DEFAULT NULL COMMENT 'IP地址',
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=2897 DEFAULT CHARSET=utf8 COMMENT='用户操作日志';
+  </update>
+</mapper>
