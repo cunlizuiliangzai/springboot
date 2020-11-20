@@ -11,37 +11,5 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class SpringRabbitmqProducerApplicationTests {
 
-    @Autowired
-    private ApiCoreSender sender;
-
-    @Test
-    public void test_sender() {
-        sender.sender("支付订单号："+System.currentTimeMillis());
-    }
-
-    @Test
-    public void test_user() {
-        sender.user("用户管理！");
-    }
-
-    @Test
-    public void test_userQuery() {
-        sender.userQuery("查询用户信息！");
-    }
-
-    @Test
-    public void test_order() {
-        sender.order("订单管理！");
-    }
-
-    @Test
-    public void test_orderQuery() {
-        sender.orderQuery("查询订单信息！");
-    }
-
-    @Test
-    public void test_orderDetailQuery() {
-        sender.orderDetailQuery("查询订单详情信息！");
-    }
 
 }
