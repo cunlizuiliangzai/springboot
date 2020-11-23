@@ -15,4 +15,6 @@ public interface AppDao {
     List<App> selectAll();
 
     int updateByPrimaryKey(App record);
+
+    int insert2(App app);
 }

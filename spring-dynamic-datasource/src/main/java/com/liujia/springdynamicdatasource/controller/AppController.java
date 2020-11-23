@@ -4,9 +4,8 @@ import com.liujia.springdynamicdatasource.annotations.DataSource;
 import com.liujia.springdynamicdatasource.entity.App;
 import com.liujia.springdynamicdatasource.service.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +26,15 @@ public class AppController {
     public List<App> selectAll2() {
         return appService.selectAll();
     }
+
+
+
+    @PostMapping("/save")
+    public void save(@RequestBody App app) {
+        appService.insert(app);
+        appService.insert2(app);
+        int i = 100 / 0;
+    }
+
 
 }

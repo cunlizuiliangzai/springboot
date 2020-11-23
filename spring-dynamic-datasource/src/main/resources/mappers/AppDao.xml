@@ -21,4 +21,20 @@
     DataChange_CreatedTime, DataChange_LastModifiedBy, DataChange_LastTime
     from app
   </select>
+
+  <insert id="insert" parameterType="com.liujia.springdynamicdatasource.entity.App">
+    INSERT INTO app
+    (Id, AppId, Name, OrgId, OrgName, OwnerName, OwnerEmail,
+    IsDeleted, DataChange_CreatedBy, DataChange_CreatedTime, DataChange_LastModifiedBy, DataChange_LastTime)
+     VALUES (#{id}, #{appid}, #{name}, #{orgid}, #{orgname}, #{ownername}, #{owneremail},
+    #{isdeleted}, #{datachangeCreatedby}, #{datachangeCreatedtime}, #{datachangeLastmodifiedby}, #{datachangeLasttime});
+  </insert>
+
+  <insert id="insert2" parameterType="com.liujia.springdynamicdatasource.entity.App">
+    INSERT INTO app
+    (Id, AppId, Name, OrgId, OrgName, OwnerName, OwnerEmail,
+    IsDeleted, DataChange_CreatedBy, DataChange_CreatedTime, DataChange_LastModifiedBy, DataChange_LastTime)
+     VALUES (#{id}, #{appid}, #{name}, #{orgid}, #{orgname}, #{ownername}, #{owneremail},
+    #{isdeleted}, #{datachangeCreatedby}, #{datachangeCreatedtime}, #{datachangeLastmodifiedby}, #{datachangeLasttime});
+  </insert>
 </mapper>
