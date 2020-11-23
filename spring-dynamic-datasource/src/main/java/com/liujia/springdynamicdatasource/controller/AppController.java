@@ -28,12 +28,15 @@ public class AppController {
     }
 
 
-
+    /**
+     * （动态数据源不生效）
+     */
     @PostMapping("/save")
+    @DataSource(value="slave")
     public void save(@RequestBody App app) {
-        appService.insert(app);
+//        appService.insert(app);
         appService.insert2(app);
-        int i = 100 / 0;
+//        int i = 100 / 0;
     }
 
 

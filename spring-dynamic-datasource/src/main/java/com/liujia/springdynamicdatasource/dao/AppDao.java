@@ -2,6 +2,7 @@ package com.liujia.springdynamicdatasource.dao;
 
 
 import com.liujia.springdynamicdatasource.entity.App;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 

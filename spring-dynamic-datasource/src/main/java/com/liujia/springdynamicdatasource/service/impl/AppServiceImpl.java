@@ -16,8 +16,6 @@ public class AppServiceImpl implements AppService {
     @Autowired
     protected AppDao appDao;
 
-    @DataSource(value = "slave")
-    @Transactional
     public int insert(App entity) {
         return appDao.insert(entity);
     }
@@ -34,8 +32,6 @@ public class AppServiceImpl implements AppService {
         return appDao.selectAll();
     }
 
-    @DataSource(value = "master")
-    @Transactional
     public int insert2(App app) {
         return appDao.insert2(app);
     }
