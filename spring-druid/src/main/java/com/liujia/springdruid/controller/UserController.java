@@ -5,16 +5,25 @@ import com.liujia.springdruid.query.UserQuery;
 import com.liujia.springdruid.service.UserService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 @Api("用户")
 @RestController
 public class UserController {
 
-    @Autowired
-    private UserService userServiceImpl;
+
+
+    //Autowired 是spring注解，先根据类型查找，找不到再根据name，用qualifier指定别名
+    // resource是jdk注解，先根据name查找，找不到再根据type，他有name和type属性指定
+    @Resource(name = "userServiceImpl")
+   // @Autowired
+//    @Qualifier("userNewServiceImpl")
+    private UserService userService;
+
 
 
     @ApiOperation(value = "根据用户id查询用户")
@@ -24,7 +33,7 @@ public class UserController {
     })
     @GetMapping("/getUserById")
     public User getUserById(@RequestParam("userId") String userId) {
-        User user = userServiceImpl.getUserById(userId);
+        User user = userService.getUserById(userId);
         return user;
     }
 
@@ -32,7 +41,7 @@ public class UserController {
     @ApiOperation(value = "分页查询用户")
     @PostMapping("getUserByPage")
     public Map getUserByPage(@RequestBody UserQuery userQuery) {
-        Map map = userServiceImpl.getUserByPage(userQuery);
+        Map map = userService.getUserByPage(userQuery);
         return map;
     }
 
