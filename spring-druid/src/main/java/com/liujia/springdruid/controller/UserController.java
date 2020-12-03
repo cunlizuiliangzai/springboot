@@ -6,6 +6,7 @@ import com.liujia.springdruid.service.UserService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,6 +33,7 @@ public class UserController {
                     dataType = "string", paramType = "query", defaultValue = "123")
     })
     @GetMapping("/getUserById")
+    @Transactional
     public User getUserById(@RequestParam("userId") String userId) {
         User user = userService.getUserById(userId);
         return user;
