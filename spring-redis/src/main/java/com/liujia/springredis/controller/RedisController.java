@@ -1,5 +1,6 @@
 package com.liujia.springredis.controller;
 
+import com.liujia.springredis.config.RedisDBChangeUtil;
 import com.liujia.springredis.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -7,6 +8,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
@@ -23,6 +26,22 @@ public class RedisController {
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
     private RedisTemplate redisTemplate;
+
+
+    @Autowired
+    RedisDBChangeUtil redisDBChangeUtil;
+
+    @RequestMapping("/addRedis")
+    public String addRedis() {
+
+        redisDBChangeUtil.setDataBase(2);
+        stringRedisTemplate.opsForValue().set("add to 2", "2020-06-02");
+        redisDBChangeUtil.setDataBase(3);
+        stringRedisTemplate.opsForValue().set("add to 3", "2020-06-02");
+        redisDBChangeUtil.setDataBase(1);
+        stringRedisTemplate.opsForValue().set("add to 1", "2020-06-02");
+        return "添加成功";
+    }
 
     @GetMapping("/testString")
     public String testString()  {
