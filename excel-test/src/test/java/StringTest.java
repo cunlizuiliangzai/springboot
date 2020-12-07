@@ -1,6 +1,8 @@
 import com.liujia.entity.Person;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,7 +11,7 @@ import java.util.regex.Pattern;
  * @since 2020-10-13 9:28
  */
 public class StringTest {
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchFieldException {
         /*String s1 = "Programming";
         String s2 = new String("Programming");
         String s3 = "Program";
@@ -23,7 +25,23 @@ public class StringTest {
         System.out.println(s2 == s2.intern()); //false
 */
 
+       /* String testStr = "JCccc";
+        System.out.println("一开始的testStr值为 ： " +testStr);
+        System.out.println(testStr.hashCode());
+        //反射机制,获取获取String里面的的value字段
+        Field valueFieldOfString = String.class.getDeclaredField("value");
+        //设置value属性的访问权限为true
+        valueFieldOfString.setAccessible(true);
+        //获取s对象上的value属性的值
+        char[] value = (char[]) valueFieldOfString.get(testStr);
+        //改变value数组中的元素
+        value[1] = 'A';
+        value[2] = 'a';
+        System.out.println("被操作之后的testStr为 ： " +testStr);
+        System.out.println(testStr.hashCode());*/
 
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("123",123);
 
     }
 
